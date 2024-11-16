@@ -1,0 +1,21 @@
+stages:
+  - build
+  - run
+
+# Build the Docker image
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker build -t hoewarmishetindelft .
+
+# Run the container and print the temperature
+run:
+  stage: run
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker run hoewarmishetindelft
